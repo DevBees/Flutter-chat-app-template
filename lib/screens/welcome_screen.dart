@@ -51,8 +51,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: CircleAvatar(
                 radius: w * 0.052,
                 backgroundImage: NetworkImage(
-                    //TODO 19: Write the url of profile image using firebase auth
-                    ''),
+                    //TODO 19: Write the url of profile image using firebase auth instead of the quotes
+                    '',
+                ),
               ),
             ),
           ),
@@ -148,7 +149,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                     blue,
                                   ),
                                   child: Text(
-                                    //TODO 26:Provide the 1st letter of the group name
+                                    //TODO 26:Provide the 1st letter of the group name instead of quotes
                                     '',
                                     style: TextStyle(
                                       color: overall > 127.5
@@ -160,7 +161,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   ),
                                 ),
                                 title: Text(
-                                  //TODO 27:Provide the group name
+                                  //TODO 27:Provide the group name instead of quotes
                                   '',
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
