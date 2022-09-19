@@ -1,16 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-//TODO 15: import necessary packages
+//TODO 15: import packages cloud firestore,firebase auth, google sign in, scaffold gradient, messages screen and database services
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '/screens/message_screen.dart';
-import '/services/database_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -21,7 +15,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   //TODO 16: Create instances of Firebase Auth, Google sign in, firebase firestore and database services
- 
+
   //TODO 17: Create a List<DocumentSnapshot> to store the data coming from database
 
   @override
@@ -29,9 +23,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     return SafeArea(
-      child: ScaffoldGradientBackground(
+      //TODO 11e:Convert Scaffold to ScaffoldGradientBackground
+      child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: ()  {
+          onPressed: () {
             //TODO 18: call function to add new group to database
           },
           backgroundColor: Color(0xff37007C),
@@ -42,14 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             size: w * 0.07,
           ),
         ),
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xffFFF3B0),
-            Color(0xffCA26FF),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        //TODO 11f:Provide gradient
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: Container(
@@ -62,17 +50,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               backgroundColor: const Color(0xff37007C),
               child: CircleAvatar(
                 radius: w * 0.052,
-                backgroundImage:
-                    NetworkImage(
-                      //TODO 19: Write the url of profile image using firebase auth 
-                      ''
-                    ),
+                backgroundImage: NetworkImage(
+                    //TODO 19: Write the url of profile image using firebase auth
+                    ''),
               ),
             ),
           ),
           title: Text(
-             //TODO 20: Write the url of user name using firebase auth inside the curly braces
-            'Welcome ${}',
+            //TODO 20: Write the url of user name using firebase auth after 'Welcome '
+            'Welcome ',
             style: TextStyle(
               color: const Color(0xff37007C),
               fontSize: w * 0.07,
@@ -84,9 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                //TODO 21: Write code to Logout from your logged in account and navigate to login screen
-
-                  
+                  //TODO 21: Write code to Logout from your logged in account and navigate to login screen
                 },
                 icon: Icon(
                   Icons.logout_rounded,
@@ -95,11 +79,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ))
           ],
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream:
-              //TODO 22: Provide chat groups stream
-              firebaseFirestore.collection('chats').snapshots(),
-          
+        body:
+            //TODO 22a: specify type of stream as QuerySnapshot
+            StreamBuilder(
+          //TODO 22b: Provide chat groups stream. This avoids the error in the line 'snapshot.data!.docs' getter
+          stream: null,
+
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Center(
@@ -122,16 +107,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     SizedBox(
                       height: h * 0.03,
                     ),
-                    
                     SizedBox(
                       height: h * 0.03,
                     ),
                     Expanded(
                       child: ListView.builder(
-                          itemCount: //TODO 24: provide length of List<DocumentSnapshot>
-                          
+                          //TODO 24: provide length of List<DocumentSnapshot> instead of the number 10
+                          itemCount: 10,
                           itemBuilder: (context, index) {
-                            
                             int red = Random().nextInt(255);
                             int blue = Random().nextInt(255);
                             int green = Random().nextInt(255);
@@ -148,22 +131,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               child: ListTile(
                                 onTap: () {
                                   //TODO 25: navigate to messaging screen with fields of document snapshots and colour generated
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MessageScreen(
-                                        groupName: chats?[index]['group'],
-                                        id: chats?[index]['id'],
-                                        color: Color.fromARGB(
-                                          255,
-                                          red,
-                                          green,
-                                          blue,
-                                        ),
-                                        overall: overall,
-                                      ),
-                                    ),
-                                  );
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
@@ -273,7 +240,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   void dispose() {
-    
     super.dispose();
   }
 }
