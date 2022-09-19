@@ -8,17 +8,12 @@ import 'screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 //TODO 1: import firebase core and auth packages
 
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/message_screen.dart';
 
 //TODO 2: Make void main to Future<void> main
-// Future<void> main() async {
 
-void main(){
+void main() {
   //TODO 3: Initialise widgets and firebase app
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
 
   runApp(FirstScreen());
 }
@@ -34,11 +29,9 @@ class _FirstScreenState extends State<FirstScreen> {
   //TODO 8: create auth service instance
   AuthServices authServices = AuthServices();
   //TODO 4: create a Firebase User
-  // User? currentUser;
   @override
   void initState() {
     // TODO 5: initialise the User
-    //    currentUser = authServices.firebaseAuth.currentUser;
     super.initState();
   }
 
@@ -52,8 +45,7 @@ class _FirstScreenState extends State<FirstScreen> {
               accentColor: Color(0xff37007C))),
       debugShowCheckedModeBanner: false,
       //TODO 9: Based on existence of user set initial route
-      // initialRoute: currentUser == null ? 'login' : 'welcome',
-      initialRoute:'login',
+      initialRoute: 'login',
       routes: {
         'login': (context) => LoginScreen(),
         'welcome': (context) => WelcomeScreen(),
@@ -61,4 +53,5 @@ class _FirstScreenState extends State<FirstScreen> {
     );
   }
 }
+//TODO(must) : provide streams in messages and welcome screen to avoid the getter not defined error in the line 'snapshot.data!.docs'
 //Go to services/auth_services.dart
