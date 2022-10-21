@@ -2,6 +2,7 @@
 
 //TODO 29: Import cloud firestore, firebase auth, intl, scaffold gradient and database services
 import 'package:flutter/material.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen(
@@ -40,9 +41,15 @@ class _MessageScreenState extends State<MessageScreen> {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return SafeArea(
-      //TODO 11g:Convert Scaffold to ScaffoldGradientBackground
-      child: Scaffold(
-        //TODO 11h:Provide gradient
+      child: ScaffoldGradientBackground(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xffFFF3B0),
+            Color(0xffCA26FF),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         appBar: AppBar(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -109,8 +116,13 @@ class _MessageScreenState extends State<MessageScreen> {
                         ],
                       ),
                     );
-                  } else if (snapshot.hasData &&
-                      snapshot.data!.docs.isNotEmpty) {
+                  } else if (snapshot.hasData
+                      // &&
+                      // snapshot.data!
+                      // .
+                      // docs.
+                      // isNotEmpty
+                      ) {
                     //TODO 33a: Create messages List<DocumentSnapshot>
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -198,7 +210,9 @@ class _MessageScreenState extends State<MessageScreen> {
                         ),
                       ],
                     );
-                  } else if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
+                  } else if (snapshot.hasData
+                      // && snapshot.data!.docs.isEmpty
+                      ) {
                     return Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
