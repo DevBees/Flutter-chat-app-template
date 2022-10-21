@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'screens/loginscreen.dart';
-import 'services/auth_services.dart';
 import 'screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 //TODO 1: import firebase core and auth packages
@@ -27,7 +26,7 @@ class FirstScreen extends StatefulWidget {
 
 class _FirstScreenState extends State<FirstScreen> {
   //TODO 8: create auth service instance
-  AuthServices authServices = AuthServices();
+ 
   //TODO 4: create a Firebase User
   @override
   void initState() {
