@@ -5,6 +5,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -23,8 +24,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     return SafeArea(
-      //TODO 11e:Convert Scaffold to ScaffoldGradientBackground
-      child: Scaffold(
+      child: ScaffoldGradientBackground(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xffFFF3B0),
+            Color(0xffCA26FF),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             //TODO 18: call function to add new group to database
@@ -51,8 +59,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: CircleAvatar(
                 radius: w * 0.052,
                 backgroundImage: NetworkImage(
-                    //TODO 19: Write the url of profile image using firebase auth instead of the quotes
-                    '',
+                  //TODO 19: Write the url of profile image using firebase auth instead of the quotes
+                  '',
                 ),
               ),
             ),
@@ -99,7 +107,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
               );
-            } else if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+            } else if (snapshot.hasData
+                // && snapshot.data!.docs.isNotEmpty
+                ) {
               //TODO 23: store the document snapshots of chat groups to created list
 
               return Center(
@@ -177,7 +187,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ],
                 ),
               );
-            } else if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
+            } else if (snapshot.hasData
+                // && snapshot.data!.docs.isEmpty
+                ) {
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
