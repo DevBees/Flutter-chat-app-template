@@ -22,6 +22,8 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
+  
+  //Declaring the scroll controller for auto scroll messages
   late ScrollController _scrollController;
   //TODO 30: Create instances of Firebase auth, firebase firestore, text editing controller and database services
 
@@ -33,6 +35,7 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
+    //Disposing the scroll controller
     _scrollController.dispose();
     //TODO 31: dispose of the text editing controller
     super.dispose();
@@ -42,8 +45,12 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
+    
+    //Initializing scroll controller with initial scroll position set to screen height
+    //So scroll controller comes to the end of the message list whenever the message screen is opened
     _scrollController = ScrollController(initialScrollOffset: h);
-    return SafeArea(
+    
+     return SafeArea(
       child: ScaffoldGradientBackground(
         gradient: const LinearGradient(
           colors: [
@@ -139,7 +146,10 @@ class _MessageScreenState extends State<MessageScreen> {
                               top: h * 0.015,
                             ),
                             child: ListView.separated(
+
+                              //Setting list view controller to scroll controller 
                               controller: _scrollController,
+
                               itemBuilder: (context, index) {
                                 //TODO 37: Return Message Bubble widget with username, message, current user or not, and photo url instead of Container
                                 return Container();
@@ -202,6 +212,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                 onPressed: () async {
                                   //TODO 35: Get message and write to database using database services
                                   
+                                  //Function to auto scroll to the end as messages are added
                                   _scrollController.animateTo(
                                     _scrollController.position.maxScrollExtent,
                                     duration: Duration(
@@ -404,3 +415,4 @@ class MessageBubble extends StatelessWidget {
     );
   }
 }
+
